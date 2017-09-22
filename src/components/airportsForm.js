@@ -1,33 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {Marker, GoogleApiWrapper} from 'google-maps-react';
-import Map from 'map';
+import {Marker} from 'google-maps-react';
+import Map from './map';
 
-class AirportsForm = React.c reateClass{
-  getInitialState() {
-    return {
+class AirportsForm  extends React.Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
       place: null,
       position: null
-    }
-  },
+    };
+  }
 
-  onSubmit: function(e) {
+  onSubmit(e) {
     e.preventDefault();
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.renderAutoComplete();
-  },
+  }
 
   componentDidUpdate(prevProps) {
     const {google, map} = this.props;
     if (map !== prevProps.map) {
       this.renderAutoComplete();
     }
-  },
+  }
 
-  renderAutoComplete: function() {
+  renderAutoComplete() {
     const {google, map} = this.props;
 
     if (!google || !map) return;
@@ -53,24 +55,23 @@ class AirportsForm = React.c reateClass{
       this.setState({
         place: place,
         position: place.geometry.location
-      })
-    })
-  },
+      });
+    });
+  }
 
-  render: function() {
+  render() {
     const props = this.props;
     const {position} = this.state;
 
     return (
-      <div className={styles.flexWrapper}>
-        <div className={styles.left}>
+      <div>
+        <div>
           <form onSubmit={this.onSubmit}>
             <input
               ref='autocomplete'
               type="text"
               placeholder="Enter a location" />
             <input
-              className={styles.button}
               type='submit'
               value='Go' />
           </form>
@@ -79,7 +80,7 @@ class AirportsForm = React.c reateClass{
             <div>Lng: {position && position.lng()}</div>
           </div>
         </div>
-        <div className={styles.right}>
+        <div>
           <Map {...props}
               containerStyle={{
                 position: 'relative',
@@ -94,10 +95,10 @@ class AirportsForm = React.c reateClass{
       </div>
     )
   }
-})
+}
 
-const MapWrapper = React.createClass({
-  render: function() {
+class MapWrapper extends React.Component{
+  render() {
     const props = this.props;
     const {google} = this.props;
 
@@ -105,10 +106,10 @@ const MapWrapper = React.createClass({
       <Map google={google}
           className={'map'}
           visible={false}>
-            <Contents {...props} />
+            <AirportsForm {...props} />
       </Map>
     );
   }
-})
+}
 
 export default MapWrapper

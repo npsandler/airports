@@ -2,46 +2,47 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import Map from 'map'
+import Map from 'map';
 
-const MapContainer = React.createClass({
-  getInitialState: function() {
-    return {
+class MapContainer extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {},
-    }
-  },
+      selectedPlace: {}
+    };
+  }
 
-  onMapMoved: function(props, map) {
+  onMapMoved(props, map) {
     const center = map.center;
-  },
+  }
 
-  onMarkerClick: function(props, marker, e) {
+  onMarkerClick(props, marker, e) {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
-  },
+  }
 
-  onInfoWindowClose: function() {
+  onInfoWindowClose() {
     this.setState({
       showingInfoWindow: false,
       activeMarker: null
     })
-  },
+  }
 
-  onMapClicked: function(props) {
+  onMapClicked(props) {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
         activeMarker: null
       })
     }
-  },
+  }
 
-  render: function() {
+  render() {
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
@@ -57,7 +58,7 @@ const MapContainer = React.createClass({
           onDragend={this.onMapMoved} />
     )
   }
-});
+};
 
 export default GoogleApiWrapper({
   apiKey: (AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo)

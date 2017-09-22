@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { camelize } from '../lib/camelize';
 import {makeCancelable} from '../lib/cancelablePromise';
 import invariant from 'invariant';
-import {InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 const mapStyles = {
   container: {

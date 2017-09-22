@@ -4,6 +4,11 @@ import AirportsForm from './components/airportsForm.js'
 import { Map } from 'google-maps-react';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    // this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   render() {
     return (
       <div className="App">
@@ -14,17 +19,17 @@ class App extends Component {
           To get started, enter two airports in the United States.
         </p>
           <AirportsForm />
+          </br>
+          </br>
           <AirportsForm />
+        </br>
+      </br>
 
-          <button onClick="calculateDistance">Calculate distance</button>
           <Map google={global.google}/>
       </div>
     );
   }
 
-  calculateDistance() {
-    console.Log("clicked")
-  }
 }
 
 export default App;
