@@ -1,8 +1,8 @@
 import React, {PropTypes as T} from 'react';
-import ReactDOM from 'react-dom';
-// import { camelize } from './lib/String'
-// import {makeCancelable} from './lib/cancelablePromise'
-import invariant from 'invariant';
+import ReactDOM from 'react-dom'
+import { camelize } from './lib/String'
+import {makeCancelable} from './lib/cancelablePromise'
+import invariant from 'invariant'
 
 const mapStyles = {
   container: {
@@ -17,37 +17,37 @@ const mapStyles = {
     bottom: 0,
     top: 0
   }
-};
+}
 
 const evtNames = ['ready', 'click', 'dragend', 'recenter'];
 
 export {wrapper as GoogleApiWrapper} from './GoogleApiComponent';
 export {Marker} from './components/Marker';
-export {InfoWindow} from './components/InfoWindow';
+export {InfoWindow} from './components/InfoWindow'
 
 export class Map extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         invariant(props.hasOwnProperty('google'),
                     'You must include a `google` prop.');
 
-        this.listeners = {};
+        this.listeners = {}
         this.state = {
           currentLocation: {
             lat: this.props.initialCenter.lat,
             lng: this.props.initialCenter.lng
           }
-        };
+        }
     }
 
     componentDidMount() {
       if (this.props.centerAroundCurrentLocation) {
         if (navigator && navigator.geolocation) {
-          this.geoPromise =
+          this.geoPromise = makeCancelable(
             new Promise((resolve, reject) => {
               navigator.geolocation.getCurrentPosition(resolve, reject);
-            }
+            })
           );
 
         this.geoPromise.promise.then(pos => {
@@ -57,7 +57,7 @@ export class Map extends React.Component {
                 lat: coords.latitude,
                 lng: coords.longitude
               }
-            });
+            })
           }).catch(e => e);
         }
       }
@@ -74,7 +74,7 @@ export class Map extends React.Component {
       if (this.props.center !== prevProps.center) {
         this.setState({
           currentLocation: this.props.center
-        });
+        })
       }
       if (prevState.currentLocation !== this.state.currentLocation) {
         this.recenterMap();
@@ -99,7 +99,7 @@ export class Map extends React.Component {
         const mapRef = this.refs.map;
         const node = ReactDOM.findDOMNode(mapRef);
         const curr = this.state.currentLocation;
-        let center = new maps.LatLng(curr.lat, curr.lng);
+        let center = new maps.LatLng(curr.lat, curr.lng)
 
         let mapConfig = Object.assign({}, {
           center,
@@ -118,7 +118,7 @@ export class Map extends React.Component {
 
     handleEvent(evtName) {
       let timeout;
-      const handlerName = `on${(evtName)}`
+      const handlerName = `on${camelize(evtName)}`
 
       return (e) => {
         if (timeout) {
@@ -130,7 +130,7 @@ export class Map extends React.Component {
             this.props[handlerName](this.props, this.map, e);
           }
         }, 0);
-      };
+      }
     }
 
     recenterMap() {
@@ -148,7 +148,7 @@ export class Map extends React.Component {
           }
           // map.panTo(center)
           map.setCenter(center);
-          maps.event.trigger(map, 'recenter');
+          maps.event.trigger(map, 'recenter')
         }
     }
 
@@ -170,7 +170,7 @@ export class Map extends React.Component {
           google: this.props.google,
           mapCenter: this.state.currentLocation
         });
-      });
+      })
     }
 
     render() {
@@ -179,13 +179,13 @@ export class Map extends React.Component {
       });
 
       const containerStyles = Object.assign({},
-        mapStyles.container, this.props.containerStyle);
+        mapStyles.container, this.props.containerStyle)
 
       return (
         <div style={containerStyles} className={this.props.className}>
           <div style={style} ref='map'>
             Loading map...
-          </div>;
+          </div>
           {this.renderChildren()}
         </div>
       )
@@ -204,7 +204,7 @@ Map.propTypes = {
   visible: T.bool
 }
 
-evtNames.forEach(e => Map.propTypes[(T.func)
+evtNames.forEach(e => Map.propTypes[camelize(e)] = T.func)
 
 Map.defaultProps = {
   zoom: 14,
