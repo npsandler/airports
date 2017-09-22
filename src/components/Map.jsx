@@ -1,8 +1,9 @@
 import React, {PropTypes as T} from 'react';
-import ReactDOM from 'react-dom'
-import { camelize } from './lib/String'
-import {makeCancelable} from './lib/cancelablePromise'
-import invariant from 'invariant'
+import ReactDOM from 'react-dom';
+import { camelize } from '../lib/camelize';
+import {makeCancelable} from '../lib/cancelablePromise';
+import invariant from 'invariant';
+import {InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 const mapStyles = {
   container: {
@@ -17,28 +18,24 @@ const mapStyles = {
     bottom: 0,
     top: 0
   }
-}
+};
 
 const evtNames = ['ready', 'click', 'dragend', 'recenter'];
 
-export {wrapper as GoogleApiWrapper} from './GoogleApiComponent';
-export {Marker} from './components/Marker';
-export {InfoWindow} from './components/InfoWindow'
-
 export class Map extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         invariant(props.hasOwnProperty('google'),
                     'You must include a `google` prop.');
 
-        this.listeners = {}
+        this.listeners = {};
         this.state = {
           currentLocation: {
             lat: this.props.initialCenter.lat,
             lng: this.props.initialCenter.lng
           }
-        }
+        };
     }
 
     componentDidMount() {

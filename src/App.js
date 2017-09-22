@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import AirportsForm from './components/airportsForm.js'
-import Map from './components/Map.jsx'
+import { Map } from 'google-maps-react';
 
 class App extends Component {
   render() {
@@ -15,9 +14,16 @@ class App extends Component {
           To get started, enter two airports in the United States.
         </p>
           <AirportsForm />
-          <Map/>
+          <AirportsForm />
+
+          <button onClick="calculateDistance">Calculate distance</button>
+          <Map google={global.google}/>
       </div>
     );
+  }
+
+  calculateDistance() {
+    console.Log("clicked")
   }
 }
 

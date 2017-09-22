@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import GoogleMapReact from 'google-maps-react';
+import { InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import Map from 'map'
 
 const MapContainer = React.createClass({
   getInitialState: function() {
@@ -46,7 +47,7 @@ const MapContainer = React.createClass({
     }
 
     return (
-      <GoogleMapReact google={this.props.google}
+      <Map google={this.props.google}
           style={{width: '100%', height: '100%', position: 'relative'}}
           className={'map'}
           zoom={14}
@@ -58,4 +59,6 @@ const MapContainer = React.createClass({
   }
 });
 
-export default MapContainer
+export default GoogleApiWrapper({
+  apiKey: (AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo)
+})(MapContainer)
