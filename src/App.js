@@ -18,7 +18,10 @@ class App extends Component {
         <p className="App-intro">
           To get started, enter two airports in the United States.
         </p>
-          <AirportsForm google={global.google}/>
+          <AirportsForm google={global.google} map={MapContainer}/>
+          <br></br>
+          <MapContainer/>
+          <text className="signature">Nathaniel Sandler</text>
        </div>
     );
   }

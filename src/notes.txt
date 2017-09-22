@@ -2,13 +2,13 @@
 
 
 FROM INSIDE AIRPORTS form
-// <Map {...props}
-//     containerStyle={{
-//       position: 'relative',
-//       height: '75%',
-//       width: '75%'
-//     }}
-//     center={this.state.position}
-//     centerAroundCurrentLocation={false}>
-//       <Marker position={this.state.position} />
-// </Map>
+<Map {...props}
+    containerStyle={{
+      position: 'relative',
+      height: '75%',
+      width: '75%'
+    }}
+    center={this.state.position}
+    centerAroundCurrentLocation={false}>
+      <Marker position={this.state.position} />
+</Map>

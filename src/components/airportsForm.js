@@ -79,18 +79,7 @@ class AirportsForm  extends React.Component{
             <div>Lat: {position && position.lat()}</div>
             <div>Lng: {position && position.lng()}</div>
           </div>
-        </div>
-        <div>
-          <Map {...props}
-              containerStyle={{
-                position: 'relative',
-                height: '75%',
-                width: '75%'
-              }}
-              center={this.state.position}
-              centerAroundCurrentLocation={false}>
-                <Marker position={this.state.position} />
-          </Map>
+          
         </div>
       </div>
     )
@@ -105,6 +94,7 @@ class MapWrapper extends React.Component{
     return (
       <Map google={google}
           className={'map', 'flex'}
+          height='50px'
           visible={false}>
             <AirportsForm {...props} />
             <AirportsForm {...props} />

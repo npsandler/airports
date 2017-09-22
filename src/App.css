@@ -23,6 +23,13 @@
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
+  height: 50px !important;
+}
+
+.signature {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
 }
 
 @keyframes App-logo-spin {

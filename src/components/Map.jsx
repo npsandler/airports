@@ -7,15 +7,14 @@ import invariant from 'invariant';
 const mapStyles = {
   container: {
     position: 'relative',
-    width: '800px',
-    height: '400px'
+    width: '100%',
+    height: '500px',
+
   },
   map: {
     position: 'relative',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    top: 0
+    margin: '0 auto',
+    border: '1px solid black'
   }
 };
 
