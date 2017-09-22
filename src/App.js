@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import AirportsForm from './components/airportsForm.js'
-import { Map } from 'google-maps-react';
+import AirportsForm from './components/airportsForm';
+import MapContainer from './components/mapContainer';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    // this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  // constructor(props) {
+  //   super(props)
+  //   // this.handleSubmit = this.handleSubmit.bind(this);
+  // }
 
   render() {
     return (
@@ -18,15 +18,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, enter two airports in the United States.
         </p>
-          <AirportsForm />
-          </br>
-          </br>
-          <AirportsForm />
-        </br>
-      </br>
-
-          <Map google={global.google}/>
-      </div>
+          <AirportsForm google={global.google}/>
+       </div>
     );
   }
 

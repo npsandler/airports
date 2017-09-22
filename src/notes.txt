@@ -1,1 +1,14 @@
 // Our apiKey is: AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo
+
+
+FROM INSIDE AIRPORTS form
+// <Map {...props}
+//     containerStyle={{
+//       position: 'relative',
+//       height: '75%',
+//       width: '75%'
+//     }}
+//     center={this.state.position}
+//     centerAroundCurrentLocation={false}>
+//       <Marker position={this.state.position} />
+// </Map>

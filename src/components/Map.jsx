@@ -6,12 +6,12 @@ import invariant from 'invariant';
 
 const mapStyles = {
   container: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%'
+    position: 'relative',
+    width: '800px',
+    height: '400px'
   },
   map: {
-    position: 'absolute',
+    position: 'relative',
     left: 0,
     right: 0,
     bottom: 0,

@@ -23,7 +23,7 @@ class AirportsForm  extends React.Component{
   }
 
   componentDidUpdate(prevProps) {
-    const {google, map} = this.props;
+    const { map } = this.props;
     if (map !== prevProps.map) {
       this.renderAutoComplete();
     }
@@ -84,8 +84,8 @@ class AirportsForm  extends React.Component{
           <Map {...props}
               containerStyle={{
                 position: 'relative',
-                height: '100vh',
-                width: '100%'
+                height: '75%',
+                width: '75%'
               }}
               center={this.state.position}
               centerAroundCurrentLocation={false}>
@@ -104,8 +104,9 @@ class MapWrapper extends React.Component{
 
     return (
       <Map google={google}
-          className={'map'}
+          className={'map', 'flex'}
           visible={false}>
+            <AirportsForm {...props} />
             <AirportsForm {...props} />
       </Map>
     );
