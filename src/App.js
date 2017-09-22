@@ -4,12 +4,16 @@ import AirportsForm from './components/airportsForm';
 import MapContainer from './components/mapContainer';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   // this.handleSubmit = this.handleSubmit.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+  }
+
+
 
   render() {
+    const map = <MapContainer key={1}/>
+    debugger
+
     return (
       <div className="App">
         <div className="App-header">
@@ -20,7 +24,7 @@ class App extends Component {
         </p>
           <AirportsForm google={global.google} map={MapContainer}/>
           <br></br>
-          <MapContainer/>
+           {map}
           <text className="signature">Nathaniel Sandler</text>
        </div>
     );

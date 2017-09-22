@@ -42,6 +42,7 @@ class MapContainer extends React.Component{
   }
 
   render() {
+  
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
