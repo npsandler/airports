@@ -12,7 +12,6 @@ class App extends Component {
 
   render() {
     const map = <MapContainer key={1}/>
-    debugger
 
     return (
       <div className="App">

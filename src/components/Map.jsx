@@ -34,6 +34,7 @@ export class Map extends React.Component {
             lng: this.props.initialCenter.lng
           }
         };
+
     }
 
     componentDidMount() {

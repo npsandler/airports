@@ -11,6 +11,8 @@ class MapContainer extends React.Component{
       activeMarker: {},
       selectedPlace: {}
     };
+
+     this.onMapClicked = this.onMapClicked.bind(this);
   }
 
   onMapMoved(props, map) {
@@ -42,7 +44,7 @@ class MapContainer extends React.Component{
   }
 
   render() {
-  
+
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
