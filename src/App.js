@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import AirportsForm from './components/airportsForm';
 import MapContainer from './components/mapContainer';
@@ -37,7 +37,7 @@ class App extends React.Component {
       const distance = this.calculateNauticalMiles(lat1, lng1, lat2, lng2);
       this.setState({distance: "Distance between airports: " + distance + " Nautical miles" });
     } else {
-      this.setState({distance: "Try again. Please enter two Airports in the United States"});
+      this.setState({distance: "Try again, Please enter two Airports in the United States"});
     }
   }
 

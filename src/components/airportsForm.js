@@ -37,7 +37,16 @@ class AirportsForm  extends React.Component{
     }
     const aref = this.refs.autocomplete;
     const node = ReactDOM.findDOMNode(aref);
-    var autocomplete = new google.maps.places.Autocomplete(node);
+
+    // options  to ensure that our autocomplete filters by American Airports
+
+    setTypes
+    const placeFilters = {
+      componentRestrictions: { country: 'us'},
+      types: ['airport']
+    }
+
+    var autocomplete = new google.maps.places.Autocomplete(node, placeFilters);
     autocomplete.bindTo('bounds', map);
 
     autocomplete.addListener('place_changed', () => {
