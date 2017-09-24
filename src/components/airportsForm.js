@@ -7,6 +7,7 @@ import Map from './map';
 class AirportsForm  extends React.Component{
 
   constructor(props) {
+
     super(props);
     this.state = {
       place: null,
@@ -53,6 +54,8 @@ class AirportsForm  extends React.Component{
         map.setZoom(17);
       }
 
+      this.props.onPlaceChange(place);
+
       this.setState({
         place: place,
         position: place.geometry.location
@@ -91,10 +94,9 @@ class MapWrapper extends React.Component{
 
     return (
       <Map google={google}
-          className={'map', 'flex'}
+          className={'map'}
           height='50px'
           visible={false}>
-            <AirportsForm {...props} />
             <AirportsForm {...props} />
       </Map>
     );
