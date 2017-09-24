@@ -33,7 +33,6 @@ class AirportsForm  extends React.Component{
   renderAutoComplete() {
     const {google, map} = this.props;
     if (!google || !map) {
-      console.log("failure");
       return;
     }
     const aref = this.refs.autocomplete;
@@ -76,11 +75,6 @@ class AirportsForm  extends React.Component{
               type="text"
               placeholder="Enter a location" />
           </form>
-          <div>
-            <div>Lat: {position && position.lat()}</div>
-            <div>Lng: {position && position.lng()}</div>
-          </div>
-
         </div>
       </div>
     )

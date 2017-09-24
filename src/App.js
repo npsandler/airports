@@ -6,6 +6,8 @@ import MapContainer from './components/mapContainer';
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.calculateDistance = this.calculateDistance.bind(this);
   }
 
   state = {};
@@ -16,15 +18,17 @@ class App extends React.Component {
   }
 
 //  ECMAScript 2015 syntax to keep parent scope this
-  onPlaceOneChange = (place) => {
-    this.setState({place1: place})
+  onPlaceOneChange = (place1) => {
+    this.setState({place1})
   };
 
-  onPlaceTwoChange = (place) => {
-    this.setState({place2: place})
+  onPlaceTwoChange = (place2) => {
+    this.setState({place2})
   };
 
-  calculateDistance() {
+  calculateDistance(e) {
+    e.preventDefault();
+    console.log(this)
     console.log("CALCULATING")
   }
 
@@ -43,9 +47,9 @@ class App extends React.Component {
             {window.google && <AirportsForm google={window.google} onPlaceChange={this.onPlaceTwoChange} />}
           </div>
           <br></br>
-          <button onClick={this.calculateDistance()}>Calculate</button>
+          <button onClick={this.calculateDistance}>Calculate</button>
           <br></br>
-           <MapContainer key={1}/>
+           <MapContainer />
           <text className="signature">Nathaniel Sandler</text>
        </div>
     );
