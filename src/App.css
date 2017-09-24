@@ -20,9 +20,9 @@
 
 .button {
   /*z-index: 5;*/
-  width: 20%;
-  height: 15%;
-  padding: 10px;
+  /*width: 100px;
+  height: 20px;
+  padding: 10px;*/
 
 }
 .button hover {
@@ -35,6 +35,10 @@
   display: flex;
   justify-content: flex-start;
   height: 50px !important;
+}
+
+input {
+ height: 20px;   width: 200px;
 }
 
 .signature {

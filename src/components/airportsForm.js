@@ -71,6 +71,8 @@ class AirportsForm  extends React.Component{
         <div>
           <form onSubmit={this.onSubmit}>
             <input
+              height = '20px'
+              width = '50px'
               ref='autocomplete'
               type="text"
               placeholder="Enter a location" />
