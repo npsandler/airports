@@ -88,8 +88,7 @@ class MapWrapper extends React.Component{
 
     return (
       <Map google={google}
-          className={'map'}
-          height='50px'
+          height='50px !important'
           visible={false}>
             <AirportsForm {...props} />
       </Map>

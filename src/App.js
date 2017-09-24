@@ -6,8 +6,10 @@ import MapContainer from './components/mapContainer';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.calculateDistance = this.calculateDistance.bind(this);
+    this.state = {
+      // this value will eventually render the distance in Nautical miles 
+      distance: "Please enter two U.S. Airports"
+    }
   }
 
   state = {};
@@ -18,22 +20,24 @@ class App extends React.Component {
   }
 
 //  ECMAScript 2015 syntax to keep parent scope this
-  onPlaceOneChange = (place1) => {
-    this.setState({place1})
+  onPlaceOneChange = (airport1) => {
+    this.setState({airport1})
   };
 
-  onPlaceTwoChange = (place2) => {
-    this.setState({place2})
+  onPlaceTwoChange = (airport2) => {
+    this.setState({airport2})
   };
 
-  calculateDistance(e) {
-    e.preventDefault();
-    console.log(this)
-    console.log("CALCULATING")
+  calculateDistance = () => {
+
+
+    let distance;
+    const lat = this.state.airport1.geometry.location.lat;
+    this.setState({distance: "Distance between airports: " + distance + " Nautical miles" })
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     return (
       <div className="App">
         <div className="App-header">
@@ -45,9 +49,11 @@ class App extends React.Component {
           <div className='flex'>
             {window.google && <AirportsForm google={window.google} onPlaceChange={this.onPlaceOneChange} />}
             {window.google && <AirportsForm google={window.google} onPlaceChange={this.onPlaceTwoChange} />}
+            <button className="button" onClick={this.calculateDistance}>Calculate</button>
           </div>
           <br></br>
-          <button onClick={this.calculateDistance}>Calculate</button>
+          {this.state.distance}
+          <br></br>
           <br></br>
            <MapContainer />
           <text className="signature">Nathaniel Sandler</text>
