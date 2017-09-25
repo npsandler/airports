@@ -13,7 +13,9 @@ class AirportsForm  extends React.Component{
       place: null,
       position: null
     };
+    this.createMarker = this.createMarker.bind(this);
   }
+
 
   onSubmit(e) {
     e.preventDefault();
@@ -39,9 +41,6 @@ class AirportsForm  extends React.Component{
     const node = ReactDOM.findDOMNode(aref);
 
     // options  to ensure that our autocomplete filters by American Airports
-
-    // cont types = setTypes([])
-
     const placeFilters = {
       componentRestrictions: { country: 'us'}
       // types: ['airport']
@@ -53,6 +52,7 @@ class AirportsForm  extends React.Component{
 
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
+      debugger
       if (!place.geometry) {
         return;
       }
@@ -65,6 +65,7 @@ class AirportsForm  extends React.Component{
       }
 
       this.props.onPlaceChange(place);
+      this.createMarker(place);
 
       this.setState({
         place: place,
@@ -72,6 +73,17 @@ class AirportsForm  extends React.Component{
       });
     });
   }
+
+  createMarker(place) {
+    const {google} = this.props
+    const map =  new google.maps.Map(document.getElementById('map'))
+    debugger
+      var placeLoc = place.geometry.location;
+      var marker = new Marker({
+        map: map,
+        position: placeLoc
+      });
+    }
 
   render() {
     const props = this.props;
@@ -101,6 +113,7 @@ class MapWrapper extends React.Component{
 
     return (
       <Map google={google}
+        id="map"
           height='50px !important'
           visible={false}>
             <AirportsForm {...props} />
