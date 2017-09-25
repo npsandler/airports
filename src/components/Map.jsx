@@ -95,11 +95,11 @@ export class Map extends React.Component {
         const mapRef = this.refs.map;
         const node = ReactDOM.findDOMNode(mapRef);
         const curr = this.state.currentLocation;
-        let center = new maps.LatLng(curr.lat, curr.lng)
+        let center = new maps.LatLng(41.850033, -87.6500523)
 
         let mapConfig = Object.assign({}, {
           center,
-          zoom: this.props.zoom
+          zoom: 4
         });
 
         this.map = new maps.Map(node, mapConfig);

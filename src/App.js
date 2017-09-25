@@ -6,6 +6,7 @@ import MapContainer from './components/mapContainer';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.google;
     this.state = {
       // this value will eventually render the distance in Nautical miles
       distance: "To get started, enter two airports in the United States."
@@ -17,6 +18,11 @@ class App extends React.Component {
   componentDidMount() {
     // an inelegant solution to window.google not loading before the initial render()
     window.setTimeout(() => this.forceUpdate(), 2000);
+
+  }
+
+  componentDidUpdate() {
+    this.google = window.google
   }
 
 //  ECMAScript 2015 syntax to keep parent scope this
@@ -36,6 +42,8 @@ class App extends React.Component {
       const lng2 = this.state.airport2.geometry.location.lng();
       const distance = this.calculateNauticalMiles(lat1, lng1, lat2, lng2);
       this.setState({distance: "Distance between airports: " + distance + " Nautical miles" });
+      this.createMarker(this.state.airport1)
+      this.createMarker(this.state.airport2)
     } else {
       this.setState({distance: "Try again, Please enter two Airports in the United States"});
     }
@@ -43,7 +51,6 @@ class App extends React.Component {
 
   // computation adapted from http://www.geodatasource.com/developers/javascript
   calculateNauticalMiles(lat1, lng1, lat2, lng2) {
-    debugger
   	let radlat1 = Math.PI * lat1/180;
   	let radlat2 = Math.PI * lat2/180;
   	let theta = lng1-lng2;
@@ -56,6 +63,15 @@ class App extends React.Component {
     dist = Math.round(dist)
   	return dist;
   }
+
+  createMarker(place) {
+    debugger
+      var placeLoc = place.geometry.location;
+      var marker = new this.google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+      });
+    }
 
   render() {
     console.log(this.state);
@@ -72,7 +88,7 @@ class App extends React.Component {
             {window.google && <AirportsForm google={window.google} onPlaceChange={this.onPlaceTwoChange} />}
             <button className="button" onClick={this.updateDistance}>Calculate</button>
           </div>
-           <MapContainer />
+          <MapContainer createMarker={this.createMarker}/>
           <text className="signature">Nathaniel Sandler</text>
        </div>
     );
