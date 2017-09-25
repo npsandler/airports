@@ -42,8 +42,8 @@ class App extends React.Component {
       const lng2 = this.state.airport2.geometry.location.lng();
       const distance = this.calculateNauticalMiles(lat1, lng1, lat2, lng2);
       this.setState({distance: "Distance between airports: " + distance + " Nautical miles" });
-      this.createMarker(this.state.airport1)
-      this.createMarker(this.state.airport2)
+      // this.createMarker(this.state.airport1)
+      // this.createMarker(this.state.airport2)
     } else {
       this.setState({distance: "Try again, Please enter two Airports in the United States"});
     }
@@ -64,14 +64,14 @@ class App extends React.Component {
   	return dist;
   }
 
-  createMarker(place) {
-    debugger
-      var placeLoc = place.geometry.location;
-      var marker = new this.google.maps.Marker({
-        map: map,
-        position: place.geometry.location
-      });
-    }
+  // createMarker(place) {
+  //   debugger
+  //     var placeLoc = place.geometry.location;
+  //     var marker = new this.google.maps.Marker({
+  //       map: map,
+  //       position: place.geometry.location
+  //     });
+  //   }
 
   render() {
     console.log(this.state);

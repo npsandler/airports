@@ -1,5 +1,5 @@
 import React from 'react';
-
+import AirportsForm from './components/airportsForm';
 import { InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import Map from './map';
 
@@ -50,6 +50,7 @@ class MapContainer extends React.Component{
     }
 
     return (
+      
       <Map google={this.props.google}
           style={{width: '75%', height: '75%', position: 'fixed'}}
           className={'map'}

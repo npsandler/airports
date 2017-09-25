@@ -49,7 +49,7 @@ class AirportsForm  extends React.Component{
 
     var autocomplete = new google.maps.places.Autocomplete(node, placeFilters);
     autocomplete.bindTo('bounds', map);
-    autocomplete.setTypes(['geocode']);
+    // autocomplete.setTypes(['airport']);
 
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
